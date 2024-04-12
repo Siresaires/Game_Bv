@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/Bloodv2.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 82.9584, 55.5041 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.567901, 0.753086, 0.901235 )
+colors = PoolColorArray( 0.321569, 0.0588235, 0.0588235, 1, 0.175781, 0.0679779, 0.0679779, 1, 0.351562, 0.138702, 0.138702, 1, 0.129412, 0.0431373, 0.0431373, 1 )
+
+[node name="Bloodv2" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Freeze_blood" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -5
+amount = 12
+lifetime = 0.3
+explosiveness = 1.0
+randomness = 0.2
+spread = 40.27
+gravity = Vector2( 0, 0 )
+initial_velocity = 450.0
+initial_velocity_random = 1.0
+angular_velocity = 300.0
+angular_velocity_random = 0.2
+damping = 100.0
+scale_amount = 12.0
+scale_amount_random = 0.1
+color_ramp = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bloodv2_body_entered"]
+[connection signal="timeout" from="Freeze_blood" to="." method="_on_Freeze_blood_timeout"]

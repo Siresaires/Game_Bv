@@ -1,0 +1,24 @@
+[gd_resource type="ParticlesMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Weapons/new_gradienttexture.tres" type="Texture" id=1]
+
+[sub_resource type="Curve" id=129]
+_data = [ Vector2( 0.0138376, 0.694785 ), 0.0, 2.78594, 0, 0, Vector2( 0.954797, 0.216258 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=130]
+curve = SubResource( 129 )
+
+[resource]
+lifetime_randomness = 0.3
+flag_disable_z = true
+spread = 37.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.2
+angular_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 400.0
+scale = 15.0
+scale_curve = SubResource( 130 )
+color_ramp = ExtResource( 1 )

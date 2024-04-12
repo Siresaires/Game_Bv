@@ -1,0 +1,179 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/Main.png" type="Texture" id=1]
+[ext_resource path="res://assets/bg abandono.png" type="Texture" id=2]
+[ext_resource path="res://assets/Salir triste.png" type="Texture" id=3]
+[ext_resource path="res://assets/Carta.png" type="Texture" id=4]
+[ext_resource path="res://assets/Jugar feliz.png" type="Texture" id=5]
+[ext_resource path="res://assets/Salir feliz.png" type="Texture" id=6]
+[ext_resource path="res://assets/Jugar triste.png" type="Texture" id=7]
+[ext_resource path="res://assets/bg.png" type="Texture" id=8]
+[ext_resource path="res://addons/sprite_mask/SpriteMask.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Menu.gd" type="Script" id=10]
+[ext_resource path="res://assets/Audio/Main Menu.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/Audio/Button.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/RobotoMono-ExtraLightItalic.ttf" type="DynamicFontData" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 13 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="TextureRect" parent="."]
+light_mask = 32
+margin_right = 2560.0
+margin_bottom = 1440.0
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Maintext" type="TextureRect" parent="."]
+light_mask = 32
+margin_left = -0.887783
+margin_top = -12.5237
+margin_right = 2559.11
+margin_bottom = 698.476
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainPlay" type="TextureButton" parent="."]
+light_mask = 32
+margin_left = 421.623
+margin_top = 384.717
+margin_right = 857.623
+margin_bottom = 646.717
+rect_scale = Vector2( 0.4, 0.42 )
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainQuit" type="TextureButton" parent="."]
+light_mask = 32
+margin_left = 424.25
+margin_top = 479.169
+margin_right = 860.254
+margin_bottom = 741.169
+rect_scale = Vector2( 0.4, 0.42 )
+texture_normal = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicMain" type="TextureRect" parent="."]
+margin_right = 2560.0
+margin_bottom = 1440.0
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicMainText" type="TextureRect" parent="."]
+margin_left = 9.585
+margin_top = -2.61221
+margin_right = 2569.59
+margin_bottom = 708.388
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicPlay" type="TextureButton" parent="."]
+margin_left = 271.26
+margin_top = 326.696
+margin_right = 399.26
+margin_bottom = 388.696
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicPlay2" type="TextureButton" parent="."]
+margin_left = 418.068
+margin_top = 385.055
+margin_right = 854.068
+margin_bottom = 647.055
+rect_scale = Vector2( 0.4, 0.42 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicQuit" type="TextureButton" parent="."]
+margin_left = 250.444
+margin_top = 420.282
+margin_right = 604.444
+margin_bottom = 580.282
+rect_scale = Vector2( 0.4, 0.42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TragicQuit2" type="TextureButton" parent="."]
+margin_left = 421.566
+margin_top = 485.328
+margin_right = 857.57
+margin_bottom = 747.328
+rect_scale = Vector2( 0.4, 0.42 )
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpriteMask" type="Node2D" parent="."]
+script = ExtResource( 9 )
+mask_position = Vector2( 1, 1 )
+mask_scale = 0.3
+follow_mouse = true
+show_trail = true
+
+[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -25.0
+autoplay = true
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -17.0
+
+[node name="Score" type="Label" parent="."]
+light_mask = 0
+margin_left = 40.3628
+margin_top = 511.265
+margin_right = 328.363
+margin_bottom = 584.265
+custom_fonts/font = SubResource( 1 )
+text = "Score : 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Best" type="Label" parent="."]
+light_mask = 0
+margin_left = 692.898
+margin_top = 506.22
+margin_right = 980.898
+margin_bottom = 579.22
+custom_fonts/font = SubResource( 1 )
+text = "Best : 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="TragicPlay" to="." method="_on_TragicPlay_pressed"]
+[connection signal="pressed" from="TragicQuit" to="." method="_on_TragicQuit_pressed"]

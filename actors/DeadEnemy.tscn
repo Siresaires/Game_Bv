@@ -1,0 +1,153 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://actors/DeadEnemy.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/RobotoMono-ExtraLightItalic.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 78
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.428571, 1 )
+colors = PoolColorArray( 0.620864, 0.699219, 0.404236, 1, 0.691406, 0.464539, 0.464539, 1, 0.105469, 0.105018, 0.101349, 1 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.5
+emission_ring_axis = Vector3( 0, 0, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 170.0
+angular_velocity = 50.0
+angular_velocity_random = 0.35
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 0.62
+color_ramp = SubResource( 7 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -211.757, -135.646 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Score"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -211.757, -135.646 ), Vector2( -211.757, -235.646 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Confetti"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="DeadEnemy" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -211.757
+margin_top = -135.646
+margin_right = 228.243
+margin_bottom = -7.64645
+custom_colors/font_color = Color( 0.945098, 0.92549, 0.439216, 1 )
+custom_colors/font_color_shadow = Color( 0.709804, 0.164706, 0.164706, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 8, -24 )
+amount = 120
+explosiveness = 0.6
+randomness = 0.2
+process_material = SubResource( 5 )
+
+[node name="TextAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/Score = SubResource( 4 )
+
+[node name="Confetti" type="AnimationPlayer" parent="."]
+anims/Confetti = SubResource( 8 )
+anims/RESET = SubResource( 9 )

@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+// Uniforms for the circular expansion effect
+uniform float radius : hint_range(0.0, 2000.0) = 100.0;
+uniform vec2 screen_size;
+
+// Uniforms for color adjustment
+uniform float brightness = 0.8;
+uniform float contrast = 1.5;
+uniform float saturation = 1.8;
+
+void fragment() {
+    // Circular mask logic
+    vec2 center_pos = screen_size / 2.0;
+    vec2 frag_pos = FRAGCOORD.xy;
+    vec2 relative_pos = frag_pos - center_pos;
+    float dist = length(relative_pos);
+    if (dist > radius) {
+        discard; // Only apply the effect inside the radius
+    }
+    
+    // Color adjustment logic
+    vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+
+    // Apply brightness
+    c = mix(vec3(0.0), c, brightness);
+    // Apply contrast
+    c = mix(vec3(0.5), c, contrast);
+    // Apply saturation
+    c = mix(vec3(dot(vec3(1.0), c) * 0.33333), c, saturation);
+
+    COLOR.rgb = c;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/radius = 0.0
+shader_param/screen_size = Vector2( 1350, 750 )
+shader_param/brightness = 1.2
+shader_param/contrast = 1.5
+shader_param/saturation = 1.8

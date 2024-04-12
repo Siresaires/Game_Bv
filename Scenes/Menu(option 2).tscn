@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/roboto_mono_36.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/MenuRoot.gd" type="Script" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MenuRoot" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="MenuRoot"]
+
+[node name="Menu1" type="MarginContainer" parent="MenuRoot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuRoot/Menu1"]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuRoot/Menu1/CenterContainer"]
+margin_left = 410.0
+margin_top = 102.0
+margin_right = 614.0
+margin_bottom = 497.0
+custom_constants/separation = 80
+
+[node name="Label" type="Label" parent="MenuRoot/Menu1/CenterContainer/VBoxContainer"]
+modulate = Color( 0.768627, 0.764706, 0.258824, 1 )
+margin_right = 204.0
+margin_bottom = 73.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Menu"
+align = 1
+
+[node name="ToolButton" type="ToolButton" parent="MenuRoot/Menu1/CenterContainer/VBoxContainer"]
+modulate = Color( 0.576471, 0.172549, 0.172549, 1 )
+margin_top = 153.0
+margin_right = 204.0
+margin_bottom = 234.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+
+[node name="ToolButton2" type="ToolButton" parent="MenuRoot/Menu1/CenterContainer/VBoxContainer"]
+modulate = Color( 0.133333, 0.34902, 0.2, 1 )
+margin_top = 314.0
+margin_right = 204.0
+margin_bottom = 395.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Option"
+
+[node name="Menu2" type="MarginContainer" parent="MenuRoot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1024.0
+margin_right = 1024.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuRoot/Menu2"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="MenuRoot/Menu2/VBoxContainer"]
+modulate = Color( 0.396078, 0.258824, 0.768627, 1 )
+margin_right = 1024.0
+margin_bottom = 73.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Opciones padres :D"
+align = 1
+
+[node name="Label2" type="Label" parent="MenuRoot/Menu2/VBoxContainer"]
+modulate = Color( 0.258824, 0.768627, 0.533333, 1 )
+margin_top = 103.0
+margin_right = 1024.0
+margin_bottom = 176.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Aqui todavia no hay nada :\"V"
+align = 1
+
+[node name="ToolButton" type="ToolButton" parent="MenuRoot/Menu2/VBoxContainer"]
+modulate = Color( 0.576471, 0.172549, 0.172549, 1 )
+margin_top = 206.0
+margin_right = 1024.0
+margin_bottom = 287.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Volver"
+
+[connection signal="pressed" from="MenuRoot/Menu1/CenterContainer/VBoxContainer/ToolButton2" to="MenuRoot" method="_on_ToolButton2_pressed"]
+[connection signal="pressed" from="MenuRoot/Menu2/VBoxContainer/ToolButton" to="MenuRoot" method="_on_ToolButton_pressed"]

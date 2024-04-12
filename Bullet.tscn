@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/bullet.png" type="Texture" id=1]
+[ext_resource path="res://Bullet.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/SmokeTrail.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/spotlight_2.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.06439, 3.90675 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ExplosionSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "explosion"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ExplosionSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Bullet" type="Area2D" groups=["Bullet"]]
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 2 )
+normal_gun = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.0135202, -0.0208659 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 2, 2, 2, 0.14902 )
+position = Vector2( 1, 0.0619001 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 7, 2, 3, 6 )
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="SmokeTrail" parent="." instance=ExtResource( 3 )]
+
+[node name="ExplosionSprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.639216, 0, 1 )
+material = SubResource( 2 )
+rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/explosion = SubResource( 3 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -1.43051e-05, -3.99096 )
+
+[node name="FollowTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]
+[connection signal="timeout" from="FollowTimer" to="." method="_on_FollowTimer_timeout"]

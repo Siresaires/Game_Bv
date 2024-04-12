@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Salir triste.png" type="Texture" id=1]
+[ext_resource path="res://assets/Confesion.png" type="Texture" id=2]
+[ext_resource path="res://assets/Finalp1.png" type="Texture" id=3]
+[ext_resource path="res://addons/sprite_mask/SpriteMask.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Ending.gd" type="Script" id=5]
+[ext_resource path="res://assets/Audio/uwu.ogg" type="AudioStream" id=6]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 32
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.4, 0.42 )
+texture = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 373.561
+margin_top = 395.308
+margin_right = 809.561
+margin_bottom = 657.308
+rect_rotation = -13.5196
+rect_scale = Vector2( 0.4, 0.42 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpriteMask" type="Node2D" parent="."]
+script = ExtResource( 4 )
+size = Vector2( 1920, 1080 )
+mask_scale = 0.3
+follow_mouse = true
+show_trail = true
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -25.0
+autoplay = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
